@@ -21,7 +21,7 @@ function(a, b){
   as.numeric(a) + as.numeric(b)
 }
 
-
+#* Return the current date
 #* @get /demoR
 function(){
    Sys.Date()
