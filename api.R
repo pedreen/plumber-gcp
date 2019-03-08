@@ -1,5 +1,5 @@
 #* Return the current time
-#* @get /demoR
+#* @get /time
 function(){
    Sys.time()
 }
@@ -13,7 +13,7 @@ function(a, b){
 }
 
 #* Return the current system and user information
-#* @get /demoR
+#* @get /date
 function(){
    Sys.info()
 }
