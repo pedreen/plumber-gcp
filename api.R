@@ -1,5 +1,5 @@
 #* Return the current time
-#* @get /time
+#* @get /teste/time
 function(){
    Sys.time()
 }
@@ -7,7 +7,7 @@ function(){
 #* Return the sum of two numbers
 #* @param a The first number to add
 #* @param b The second number to add
-#* @get /sum
+#* @get /teste/sum
 function(a, b){
   as.numeric(a) + as.numeric(b)
 }
