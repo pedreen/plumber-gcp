@@ -1,10 +1,3 @@
-library(googleAuthR)
-library(searchConsoleR)
-options(googleAuthR.scopes.selected = "https://www.googleapis.com/auth/webmasters") 
-
-gar_auth_service("client_secret.json")
-
-list_websites()
 #* Return the current time
 #* @get /teste/time
 function(){
