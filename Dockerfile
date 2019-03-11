@@ -8,7 +8,7 @@ WORKDIR /data
 
 RUN install2.r --error \ 
     -r 'http://cran.rstudio.com' \
-    googleAuthR googleAnalyticsR bigQueryR \
+    googleAuthR googleAnalyticsR bigQueryR searchConsoleR \
     && Rscript -e "devtools::install_github('RhysJackson/googleKubernetesR')" 
     
 EXPOSE 9000 
