@@ -1,3 +1,5 @@
+library(googleKubernetesR)
+k8s_auth(json = "client_secret.json")
 #* Return the current time
 #* @get /teste/time
 function(){
