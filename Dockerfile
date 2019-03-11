@@ -3,6 +3,7 @@ FROM trestletech/plumber
 
 RUN mkdir /data
 COPY api.R /data
+COPY client_secret.json /data
 WORKDIR /data
 
 RUN install2.r --error \ 
