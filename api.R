@@ -4,16 +4,15 @@ function(){
    Sys.time()
 }
 
-#* Return the sum of two numbers
-#* @param a The first number to add
-#* @param b The second number to add
-#* @get /teste/sum
-function(a, b){
-  as.numeric(a) + as.numeric(b)
+#* Echo back the input
+#* @param msg The first number to add
+#* @get /teste/echo
+function(msg=""){
+  list(msg = paste0("The message is: '", msg, "'"))
 }
 
 #* Return the current system and user information
-#* @get /date
+#* @get /teste/info
 function(){
    Sys.info()
 }
