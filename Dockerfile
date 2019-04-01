@@ -15,13 +15,11 @@ RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 \
         -out /etc/ssl/private/server.crt
  
 ADD ./nginx.conf /etc/nginx/nginx.conf
-ADD . /data    
-EXPOSE 80 443 9000 
-
+ 
+EXPOSE 80 443
+ 
 ADD . /app
 WORKDIR /app
 
-CMD service nginx start && ["R", "-e", \
-    "pr <- plumber::plumb('api.R'); \
-    pr$run(host='0.0.0.0', port=9000)"]
+CMD service nginx start && R -e "source('start_api.R')"
 
