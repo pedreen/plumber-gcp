@@ -16,7 +16,7 @@ RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 \
  
 ADD ./nginx.conf /etc/nginx/nginx.conf
 ADD . /data    
-EXPOSE 80 443 
+EXPOSE 80 443 9000 
 
 ADD . /app
 WORKDIR /app
