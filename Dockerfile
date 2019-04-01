@@ -1,10 +1,5 @@
 FROM trestletech/plumber
 
-
-RUN mkdir /data
-COPY api.R /data
-WORKDIR /data
-
 RUN install2.r --error \ 
     -r 'http://cran.rstudio.com' \
     googleAuthR googleAnalyticsR bigQueryR searchConsoleR \
@@ -22,7 +17,11 @@ RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 \
 ADD ./nginx.conf /etc/nginx/nginx.conf
 ADD . /data    
 EXPOSE 80 443 
+
+ADD . /app
+WORKDIR /app
+
 CMD service nginx start && ["R", "-e", \
-    "pr <- plumber::plumb('/data/api.R'); \
+    "pr <- plumber::plumb('api.R'); \
     pr$run(host='0.0.0.0', port=9000)"]
 
