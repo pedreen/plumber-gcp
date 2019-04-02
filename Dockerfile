@@ -1,9 +1,8 @@
-FROM trestletech/plumber
-
-RUN install2.r --error \ 
-    -r 'http://cran.rstudio.com' \
-    googleAuthR googleAnalyticsR bigQueryR searchConsoleR \
-    && Rscript -e "devtools::install_github('RhysJackson/googleKubernetesR')" 
+FROM rocker/r-base
+ 
+# install R packages
+RUN install2.r \
+plumber
     
 # setup nginx
 RUN apt-get update && \
@@ -16,7 +15,7 @@ RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 \
  
 ADD ./nginx.conf /etc/nginx/nginx.conf
  
-EXPOSE 80 443 9000
+EXPOSE 9000 443 
  
 ADD . /app
 WORKDIR /app
