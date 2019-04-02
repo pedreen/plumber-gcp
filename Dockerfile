@@ -1,24 +1,14 @@
-FROM rocker/r-base
- 
-# install R packages
-RUN install2.r \
-plumber
-    
-# setup nginx
-RUN apt-get update && \
-apt-get install -y nginx apache2-utils && \
-htpasswd -bc /etc/nginx/.htpasswd admin pedro
+FROM trestletech/plumber
+MAINTAINER Pedro Moreira (pedro@4intelligence.com.br)
+WORKDIR /payload/
+COPY [".","./"]
+RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
+  && apt-get install -y libcurl4-openssl-dev \
+	libssl-dev \
+	libxml2-dev \
+	make
 
-RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 \
-        -keyout /etc/ssl/private/server.key \
-        -out /etc/ssl/private/server.crt
- 
-ADD ./nginx.conf /etc/nginx/nginx.conf
- 
-EXPOSE 80 443 
- 
-ADD . /app
-WORKDIR /app
 
-CMD service nginx start && R -e "source('start_api.R')"
-
+EXPOSE 8000
+ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(commandArgs()[4]); pr$run(host='0.0.0.0', port=9000)"]
+CMD ["Plumber.Rproj","schedule.R"]
