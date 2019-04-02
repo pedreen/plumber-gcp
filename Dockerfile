@@ -11,4 +11,4 @@ RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
 
 EXPOSE 8000
 ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(commandArgs()[4]); pr$run(host='0.0.0.0', port=9000)"]
-CMD ["Plumber.Rproj","api.R"]
+CMD ["api.R"]
