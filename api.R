@@ -1,6 +1,6 @@
 # plumber.R
  
-#* Echo back the input
+#* Echo back the input message
 #* @param msg The message to echo
 #* @get /test/echo
 function(msg=""){
