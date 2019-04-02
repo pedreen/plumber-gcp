@@ -1,5 +1,5 @@
 FROM trestletech/plumber
-MAINTAINER Pedro Moreira (pedro@4intelligence.com.br)
+MAINTAINER Pedro H Moreira (pedro@4intelligence.com.br)
 WORKDIR /payload/
 COPY [".","./"]
 RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
